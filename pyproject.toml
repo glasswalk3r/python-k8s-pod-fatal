@@ -1,0 +1,40 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "python_k8s_pod_fatal"
+version = "0.0.1"
+authors = [
+  { name="Alceu Rodrigues de Freitas Junior", email="glasswalk3r@yahoo.com.br" },
+]
+description = "A Python exception that provides metadata to Kubernetes Pods when they have a catastrophic failure"
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Development Status :: 3 - Alpha",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+]
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/glasswalk3r/python-k8s-pod-fatal"
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+
+pythonpath = [
+    "src"
+]
+testpaths = [
+    "tests",
+]
+
+[tool.hatch.build.targets.sdist]
+exclude = [
+  "wanted_projects.txt",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/python_k8s_pod_fatal"]
