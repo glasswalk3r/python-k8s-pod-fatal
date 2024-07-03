@@ -31,10 +31,5 @@ testpaths = [
     "tests",
 ]
 
-[tool.hatch.build.targets.sdist]
-exclude = [
-  "wanted_projects.txt",
-]
-
 [tool.hatch.build.targets.wheel]
 packages = ["src/python_k8s_pod_fatal"]
