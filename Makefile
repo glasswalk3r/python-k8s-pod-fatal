@@ -2,6 +2,17 @@ VIRTUALENV:=$(shell basename $$PWD)
 .PHONY: clean clean-test clean-pyc clean-build docs help
 .DEFAULT_GOAL := help
 
+define BROWSER_PYSCRIPT
+import os, webbrowser, sys
+
+from urllib.request import pathname2url
+
+webbrowser.open("file://" + pathname2url(os.path.abspath(sys.argv[1])))
+endef
+export BROWSER_PYSCRIPT
+
+BROWSER := python -c "$$BROWSER_PYSCRIPT"
+
 define PRINT_HELP_PYSCRIPT
 import re, sys
 
@@ -61,3 +72,9 @@ init:
 bump:
 	bump2version --tag patch
 
+docs: ## generate Sphinx HTML documentation, including API docs
+	rm -f docs/source/modules.rst
+	sphinx-apidoc --ext-autodoc -o docs/source src/kubernetes
+	$(MAKE) -C docs clean
+	$(MAKE) -C docs html
+	$(BROWSER) docs/build/html/index.html
