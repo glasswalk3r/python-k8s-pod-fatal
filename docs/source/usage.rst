@@ -29,3 +29,17 @@ Then, anywhere some module from your application:
 When the exception is raised, the error message will be available not only in
 the respective container log, but also in the ``pod.status.message`` from the
 Kubernetes API.
+
+Customized log file
+-------------------
+
+You can also use a customized log file (see References), but in order to do
+you will need to pass an additional parameter to the ``Fatal`` constructor, which
+defaults to ``/dev/termination-log``. If this file is not available (the default
+file does exist), the instance won't try to write to it.
+
+In this case, you probably want to change the configuration of the Pod and also
+pass the same value as an environment variable to your code, better defined in
+a single place.
+
+See the ``tests`` of this module for an example.

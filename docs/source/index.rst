@@ -25,6 +25,7 @@ even more interesting.
 
    usage
    modules
+   references
 
 
 Indices and tables
